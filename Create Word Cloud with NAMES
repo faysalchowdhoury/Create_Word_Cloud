@@ -1,0 +1,30 @@
+## Create Word Cloud with NAMES
+
+#!pip install wordcloud
+
+from wordcloud import WordCloud
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a Pandas DataFrame with the comment text column
+df = pd.DataFrame({'comment text': ['Liton Das', 'Anamul Haque', 'Khaled Ahmed',
+                                    'Mehedi Hasan', 'Mahmudullah', 'Mustafizur Rahman',
+                                    'Nasum Ahmed', 'Nurul Hasan', 'Rishad Hossain',
+                                    'Soumya Sarkar', 'Tamim Iqbal', 'Tanzid Hasan',
+                                    'Tanzim Hasan Sakib', 'Towhid Hridoy', 'Zakir Hasan']})
+
+# Combine all comments into a single string
+text = "".join(df['comment text'].dropna())
+
+# Print the combined string
+#print(text)
+
+#Generate word cloud
+wordcloud = WordCloud(background_color="black",
+                     width=800, height=400).generate(text)
+
+#Display the generated word cloud
+plt.figure(figsize=(10,5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.show()
